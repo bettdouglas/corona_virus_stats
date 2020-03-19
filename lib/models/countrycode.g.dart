@@ -1,36 +1,42 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of country_code;
+part of countrycode;
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<CountryCode> _$countryCodeSerializer = new _$CountryCodeSerializer();
+Serializer<Countrycode> _$countrycodeSerializer = new _$CountrycodeSerializer();
 
-class _$CountryCodeSerializer implements StructuredSerializer<CountryCode> {
+class _$CountrycodeSerializer implements StructuredSerializer<Countrycode> {
   @override
-  final Iterable<Type> types = const [CountryCode, _$CountryCode];
+  final Iterable<Type> types = const [Countrycode, _$Countrycode];
   @override
-  final String wireName = 'CountryCode';
+  final String wireName = 'Countrycode';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, CountryCode object,
+  Iterable<Object> serialize(Serializers serializers, Countrycode object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
-      'iso2',
-      serializers.serialize(object.iso2, specifiedType: const FullType(String)),
-      'iso3',
-      serializers.serialize(object.iso3, specifiedType: const FullType(String)),
-    ];
-
+    final result = <Object>[];
+    if (object.iso2 != null) {
+      result
+        ..add('iso2')
+        ..add(serializers.serialize(object.iso2,
+            specifiedType: const FullType(String)));
+    }
+    if (object.iso3 != null) {
+      result
+        ..add('iso3')
+        ..add(serializers.serialize(object.iso3,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
   @override
-  CountryCode deserialize(Serializers serializers, Iterable<Object> serialized,
+  Countrycode deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new CountryCodeBuilder();
+    final result = new CountrycodeBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -53,35 +59,28 @@ class _$CountryCodeSerializer implements StructuredSerializer<CountryCode> {
   }
 }
 
-class _$CountryCode extends CountryCode {
+class _$Countrycode extends Countrycode {
   @override
   final String iso2;
   @override
   final String iso3;
 
-  factory _$CountryCode([void Function(CountryCodeBuilder) updates]) =>
-      (new CountryCodeBuilder()..update(updates)).build();
+  factory _$Countrycode([void Function(CountrycodeBuilder) updates]) =>
+      (new CountrycodeBuilder()..update(updates)).build();
 
-  _$CountryCode._({this.iso2, this.iso3}) : super._() {
-    if (iso2 == null) {
-      throw new BuiltValueNullFieldError('CountryCode', 'iso2');
-    }
-    if (iso3 == null) {
-      throw new BuiltValueNullFieldError('CountryCode', 'iso3');
-    }
-  }
+  _$Countrycode._({this.iso2, this.iso3}) : super._();
 
   @override
-  CountryCode rebuild(void Function(CountryCodeBuilder) updates) =>
+  Countrycode rebuild(void Function(CountrycodeBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  CountryCodeBuilder toBuilder() => new CountryCodeBuilder()..replace(this);
+  CountrycodeBuilder toBuilder() => new CountrycodeBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is CountryCode && iso2 == other.iso2 && iso3 == other.iso3;
+    return other is Countrycode && iso2 == other.iso2 && iso3 == other.iso3;
   }
 
   @override
@@ -91,15 +90,15 @@ class _$CountryCode extends CountryCode {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('CountryCode')
+    return (newBuiltValueToStringHelper('Countrycode')
           ..add('iso2', iso2)
           ..add('iso3', iso3))
         .toString();
   }
 }
 
-class CountryCodeBuilder implements Builder<CountryCode, CountryCodeBuilder> {
-  _$CountryCode _$v;
+class CountrycodeBuilder implements Builder<Countrycode, CountrycodeBuilder> {
+  _$Countrycode _$v;
 
   String _iso2;
   String get iso2 => _$this._iso2;
@@ -109,9 +108,9 @@ class CountryCodeBuilder implements Builder<CountryCode, CountryCodeBuilder> {
   String get iso3 => _$this._iso3;
   set iso3(String iso3) => _$this._iso3 = iso3;
 
-  CountryCodeBuilder();
+  CountrycodeBuilder();
 
-  CountryCodeBuilder get _$this {
+  CountrycodeBuilder get _$this {
     if (_$v != null) {
       _iso2 = _$v.iso2;
       _iso3 = _$v.iso3;
@@ -121,21 +120,21 @@ class CountryCodeBuilder implements Builder<CountryCode, CountryCodeBuilder> {
   }
 
   @override
-  void replace(CountryCode other) {
+  void replace(Countrycode other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$CountryCode;
+    _$v = other as _$Countrycode;
   }
 
   @override
-  void update(void Function(CountryCodeBuilder) updates) {
+  void update(void Function(CountrycodeBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$CountryCode build() {
-    final _$result = _$v ?? new _$CountryCode._(iso2: iso2, iso3: iso3);
+  _$Countrycode build() {
+    final _$result = _$v ?? new _$Countrycode._(iso2: iso2, iso3: iso3);
     replace(_$result);
     return _$result;
   }

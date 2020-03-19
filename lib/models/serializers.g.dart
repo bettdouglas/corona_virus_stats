@@ -7,7 +7,7 @@ part of serializers;
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
-      ..add(CountryCode.serializer)
+      ..add(Countrycode.serializer)
       ..add(Location.serializer)
       ..add(Province.serializer))
     .build();

@@ -10,6 +10,9 @@ class StatContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var titleTheme = TextStyle(
+      color: Colors.white,
+    );
     return Container(
       decoration: BoxDecoration(
         color: statColor,
@@ -20,7 +23,7 @@ class StatContainer extends StatelessWidget {
       ),
       child: ListTile(
         leading: Icon(iconData,size: 40,),
-        title: Text(statTitle),
+        title: Text(statTitle,style: titleTheme,),
         subtitle: Text(stat),
       )
     );

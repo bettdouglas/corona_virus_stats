@@ -30,19 +30,28 @@ class _$ProvinceSerializer implements StructuredSerializer<Province> {
       'location',
       serializers.serialize(object.location,
           specifiedType: const FullType(Location)),
-      'countrycode',
-      serializers.serialize(object.countryCode,
-          specifiedType: const FullType(CountryCode)),
-      'confirmed',
-      serializers.serialize(object.confirmed,
-          specifiedType: const FullType(int)),
-      'deaths',
-      serializers.serialize(object.deaths, specifiedType: const FullType(int)),
       'recovered',
       serializers.serialize(object.recovered,
           specifiedType: const FullType(int)),
     ];
-
+    if (object.countrycode != null) {
+      result
+        ..add('countrycode')
+        ..add(serializers.serialize(object.countrycode,
+            specifiedType: const FullType(Countrycode)));
+    }
+    if (object.confirmed != null) {
+      result
+        ..add('confirmed')
+        ..add(serializers.serialize(object.confirmed,
+            specifiedType: const FullType(int)));
+    }
+    if (object.deaths != null) {
+      result
+        ..add('deaths')
+        ..add(serializers.serialize(object.deaths,
+            specifiedType: const FullType(int)));
+    }
     return result;
   }
 
@@ -74,8 +83,8 @@ class _$ProvinceSerializer implements StructuredSerializer<Province> {
               specifiedType: const FullType(Location)) as Location);
           break;
         case 'countrycode':
-          result.countryCode.replace(serializers.deserialize(value,
-              specifiedType: const FullType(CountryCode)) as CountryCode);
+          result.countrycode.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Countrycode)) as Countrycode);
           break;
         case 'confirmed':
           result.confirmed = serializers.deserialize(value,
@@ -106,7 +115,7 @@ class _$Province extends Province {
   @override
   final Location location;
   @override
-  final CountryCode countryCode;
+  final Countrycode countrycode;
   @override
   final int confirmed;
   @override
@@ -122,7 +131,7 @@ class _$Province extends Province {
       this.countryregion,
       this.lastupdate,
       this.location,
-      this.countryCode,
+      this.countrycode,
       this.confirmed,
       this.deaths,
       this.recovered})
@@ -138,15 +147,6 @@ class _$Province extends Province {
     }
     if (location == null) {
       throw new BuiltValueNullFieldError('Province', 'location');
-    }
-    if (countryCode == null) {
-      throw new BuiltValueNullFieldError('Province', 'countryCode');
-    }
-    if (confirmed == null) {
-      throw new BuiltValueNullFieldError('Province', 'confirmed');
-    }
-    if (deaths == null) {
-      throw new BuiltValueNullFieldError('Province', 'deaths');
     }
     if (recovered == null) {
       throw new BuiltValueNullFieldError('Province', 'recovered');
@@ -168,7 +168,7 @@ class _$Province extends Province {
         countryregion == other.countryregion &&
         lastupdate == other.lastupdate &&
         location == other.location &&
-        countryCode == other.countryCode &&
+        countrycode == other.countrycode &&
         confirmed == other.confirmed &&
         deaths == other.deaths &&
         recovered == other.recovered;
@@ -186,7 +186,7 @@ class _$Province extends Province {
                                 countryregion.hashCode),
                             lastupdate.hashCode),
                         location.hashCode),
-                    countryCode.hashCode),
+                    countrycode.hashCode),
                 confirmed.hashCode),
             deaths.hashCode),
         recovered.hashCode));
@@ -199,7 +199,7 @@ class _$Province extends Province {
           ..add('countryregion', countryregion)
           ..add('lastupdate', lastupdate)
           ..add('location', location)
-          ..add('countryCode', countryCode)
+          ..add('countrycode', countrycode)
           ..add('confirmed', confirmed)
           ..add('deaths', deaths)
           ..add('recovered', recovered))
@@ -228,11 +228,11 @@ class ProvinceBuilder implements Builder<Province, ProvinceBuilder> {
   LocationBuilder get location => _$this._location ??= new LocationBuilder();
   set location(LocationBuilder location) => _$this._location = location;
 
-  CountryCodeBuilder _countryCode;
-  CountryCodeBuilder get countryCode =>
-      _$this._countryCode ??= new CountryCodeBuilder();
-  set countryCode(CountryCodeBuilder countryCode) =>
-      _$this._countryCode = countryCode;
+  CountrycodeBuilder _countrycode;
+  CountrycodeBuilder get countrycode =>
+      _$this._countrycode ??= new CountrycodeBuilder();
+  set countrycode(CountrycodeBuilder countrycode) =>
+      _$this._countrycode = countrycode;
 
   int _confirmed;
   int get confirmed => _$this._confirmed;
@@ -254,7 +254,7 @@ class ProvinceBuilder implements Builder<Province, ProvinceBuilder> {
       _countryregion = _$v.countryregion;
       _lastupdate = _$v.lastupdate;
       _location = _$v.location?.toBuilder();
-      _countryCode = _$v.countryCode?.toBuilder();
+      _countrycode = _$v.countrycode?.toBuilder();
       _confirmed = _$v.confirmed;
       _deaths = _$v.deaths;
       _recovered = _$v.recovered;
@@ -286,7 +286,7 @@ class ProvinceBuilder implements Builder<Province, ProvinceBuilder> {
               countryregion: countryregion,
               lastupdate: lastupdate,
               location: location.build(),
-              countryCode: countryCode.build(),
+              countrycode: _countrycode?.build(),
               confirmed: confirmed,
               deaths: deaths,
               recovered: recovered);
@@ -295,8 +295,8 @@ class ProvinceBuilder implements Builder<Province, ProvinceBuilder> {
       try {
         _$failedField = 'location';
         location.build();
-        _$failedField = 'countryCode';
-        countryCode.build();
+        _$failedField = 'countrycode';
+        _countrycode?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Province', _$failedField, e.toString());

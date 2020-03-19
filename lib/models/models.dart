@@ -2,5 +2,5 @@ library models;
 
 export 'location.dart';
 export 'province.dart';
-export 'country_code.dart';
+export 'countrycode.dart';
 export 'serializers.dart';
