@@ -9,7 +9,7 @@ class GraphStats extends StatelessWidget {
   final List<TimeSeries> series;
   final Province province;
 
-  GraphStats(this.series,this.province);
+  GraphStats(this.series, this.province);
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class GraphStats extends StatelessWidget {
                     label: Text(legendText),
                     avatar: Icon(
                       getIcon(legendText),
-                      color: Colors.deepOrangeAccent,
+                      color: getColor(legendText),
                     ),
                     labelPadding: EdgeInsets.only(right: 3),
                     backgroundColor: Colors.transparent,
