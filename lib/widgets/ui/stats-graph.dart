@@ -7,8 +7,9 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 class GraphStats extends StatelessWidget {
   final List<TimeSeries> series;
+  final Province province;
 
-  GraphStats(this.series);
+  GraphStats(this.series,this.province);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class GraphStats extends StatelessWidget {
             )
           : SfCartesianChart(
               title: ChartTitle(
-                text: 'Monthly Stats',
+                text: '${province.countryregion} Monthly Stats',
                 alignment: ChartAlignment.center,
                 textStyle: ChartTextStyle(
                   fontSize: 14,

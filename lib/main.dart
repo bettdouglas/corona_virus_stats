@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // store.fetchLatest();
     return ChangeNotifierProvider(
-      create: (_) => DataStore(context),
+      create: (_) => DataStore(),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

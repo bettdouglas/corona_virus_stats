@@ -11,12 +11,11 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:latlong/latlong.dart';
 import 'package:map_markers/map_markers.dart';
-import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   // final store = CoronaDataStore();
-
+  final MapController controller = MapController();
   @override
   Widget build(BuildContext context) {
     var dataStore = Provider.of<DataStore>(context);
@@ -65,6 +64,7 @@ class HomePage extends StatelessWidget {
               ),
               Expanded(
                 child: FlutterMap(
+                  mapController: controller,
                   options: MapOptions(
                       center: LatLng(43, 12.8),
                       zoom: 2,
@@ -114,6 +114,7 @@ class HomePage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             await dataStore.fetchLatest();
+            
           },
           child: Icon(Icons.public),
         ),
@@ -121,11 +122,19 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  void zoomToCountry(CountryCode country,MapController controller,DataStore store) async {
+    var province = store.provinces.where((e) => e.countrycode != null).firstWhere((element) => element.countrycode.iso2 == country.code,orElse: () => null);
+    if(province != null) {
+      controller.move(LatLng(province.location.lat,province.location.lng), 5);
+    }
+    // } else {
+    //   await store.changeCountry(country);
+    // }
+  }
+
   void updateCountry(CountryCode country, DataStore store) {
     store.changeCountry(country);
-    Observable(store.isFetching).observe((changenotif) {
-      print('ValueChanged: ${changenotif.newValue}');
-    });
+    zoomToCountry(country, controller, store);
   }
 
   Marker showPlaceMarker(Province province) {
@@ -152,18 +161,18 @@ class HomePage extends StatelessWidget {
 
   CircleMarker showCircleMarker(Province province) {
     return CircleMarker(
-        borderColor: Colors.redAccent,
-        borderStrokeWidth: 1,
-        color: Colors.white54,
-        point: LatLng(province.location.lat, province.location.lng),
-        radius: 50);
+      borderColor: Colors.redAccent,
+      borderStrokeWidth: 1,
+      color: Colors.white54,
+      point: LatLng(province.location.lat, province.location.lng),
+      radius: 50,
+    );
   }
 
-  void showCountryGraph(Province province,BuildContext context) {
+  void showCountryGraph(Province province, BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        print(province);
         return ChangeNotifierProvider<CountryStore>(
           create: (_) => CountryStore(province),
           child: Consumer<CountryStore>(
@@ -176,7 +185,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               clipBehavior: Clip.hardEdge,
-              builder: (context) => GraphStats(store.series),
+              builder: (context) => GraphStats(store.series, province),
               onClosing: () {
                 store.dispose();
               },

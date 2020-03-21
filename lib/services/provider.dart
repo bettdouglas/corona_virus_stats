@@ -1,22 +1,21 @@
 import 'package:corona/models/models.dart';
 import 'package:corona/services/api.dart';
 import 'package:country_code_picker/country_code.dart' as cc;
-import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
 
 class DataStore with ChangeNotifier {
   static Logger logger = Logger('DataStore');
-  static cc.CountryCode countryCode;
+  static cc.CountryCode countryCode = cc.CountryCode.fromCode('KE');
   final _api = NetCalls();
 
   CountryStats countryStats;
   List<Province> provinces;
   bool isFetching = false;
 
-  DataStore(BuildContext context) {
-    countryCode = cc.CountryCode.fromCode(CountryLocalizations.of(context).locale.countryCode);
+  DataStore() {
+    // countryCode = ;
     fetchLatest();
   }
 
@@ -39,7 +38,13 @@ class DataStore with ChangeNotifier {
 
   void changeCountry(cc.CountryCode code) {
     countryCode = code;
-    fetchLatest();
+    fetchCountryData(code.code);
+  }
+
+  void fetchCountryData(String iso2) async {
+    var provinces = await _api.getCountryCases(iso2);
+    countryStats = computeStats(provinces);
+    notifyListeners();
   }
 }
 
