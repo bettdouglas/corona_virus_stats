@@ -10,7 +10,10 @@ class NoStats extends StatelessWidget {
         children: <Widget>[
           Align(
             alignment: Alignment.center,
-            child: CircularProgressIndicator(),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: CircularProgressIndicator(),
+            ),
           ),
           GrayedOut(
             Column(

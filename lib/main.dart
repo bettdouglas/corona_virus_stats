@@ -1,13 +1,10 @@
 import 'package:corona/services/provider.dart';
+import 'package:corona/utils/utils.dart';
 import 'package:corona/widgets/main-page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:logging/logging.dart';
 void main() {
-  Logger logger = Logger.root;
-  logger.onRecord.listen((event) {
-    print('${event.time}: ${event.level}: ${event.loggerName} -> ${event.message}');
-  });
+  Utils.setUp();
   runApp(MyApp());
 }
 
@@ -18,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // store.fetchLatest();
     return ChangeNotifierProvider(
-      create: (_) => DataStore(),
+      create: (_) => DataStore(context),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

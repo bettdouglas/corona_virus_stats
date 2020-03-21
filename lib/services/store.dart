@@ -11,9 +11,9 @@ class CoronaDataStore = _CoronaDataStore with _$CoronaDataStore;
 abstract class _CoronaDataStore with Store {
   final _api = NetCalls();
 
-  _$CoronaDataStore() {
-    fetchLatest();
-  }
+  // _$CoronaDataStore() {
+  //   fetchLatest();
+  // }
 
   @observable
   cc.CountryCode countryCode = cc.CountryCode.fromCode('KE');

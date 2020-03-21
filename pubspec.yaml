@@ -29,7 +29,8 @@ dependencies:
   map_markers: ^0.1.0
   flutter_map_marker_cluster: 0.2.7
   provider: any
-  
+  syncfusion_flutter_charts: 18.1.36
+  flutter_spinkit: "^4.1.2"
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
