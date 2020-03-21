@@ -26,6 +26,9 @@ dependencies:
   flutter_mobx: ^1.0.1
   country_code_picker: ^1.3.6
   flutter_map: ^0.8.2
+  map_markers: ^0.1.0
+  flutter_map_marker_cluster: 0.2.7
+  provider: any
   
 
   # The following adds the Cupertino Icons font to your application.
