@@ -13,6 +13,7 @@ class DataStore with ChangeNotifier {
   CountryStats countryStats;
   List<Province> provinces;
   bool isFetching = false;
+  bool isCountrySelected = false;
 
   DataStore() {
     // countryCode = ;
@@ -38,6 +39,8 @@ class DataStore with ChangeNotifier {
 
   void changeCountry(cc.CountryCode code) {
     countryCode = code;
+    isCountrySelected = true;
+    notifyListeners();
     fetchCountryData(code.code);
   }
 
