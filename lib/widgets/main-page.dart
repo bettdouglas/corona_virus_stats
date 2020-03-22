@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:latlong/latlong.dart';
-import 'package:map_markers/map_markers.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -35,9 +34,9 @@ class HomePage extends StatelessWidget {
           actions: <Widget>[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: FlagIcon(
+              child: dataStore.isCountrySelected ? FlagIcon(
                 countryCode: DataStore.countryCode,
-              ),
+              ) : Image.asset('assets/icon.png',width: 50,),
             ),
             CountryCodePicker(
               showFlag: true,
@@ -80,6 +79,7 @@ class HomePage extends StatelessWidget {
                         'accessToken':
                             'pk.eyJ1IjoiYmV0dGRvdWdpZSIsImEiOiJjaml4MzlieGcyM25yM3JvM3JjMWs0bzB3In0.o339es_Y4jOFIjIH_n38Lg',
                       },
+                      tileProvider: CachedNetworkTileProvider()
                     ),
                     // MarkerLayerOptions(
                     //   markers: dataStore.isFetching
@@ -114,7 +114,6 @@ class HomePage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             await dataStore.fetchLatest();
-            
           },
           child: Icon(Icons.public),
         ),
@@ -122,10 +121,14 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void zoomToCountry(CountryCode country,MapController controller,DataStore store) async {
-    var province = store.provinces.where((e) => e.countrycode != null).firstWhere((element) => element.countrycode.iso2 == country.code,orElse: () => null);
-    if(province != null) {
-      controller.move(LatLng(province.location.lat,province.location.lng), 5);
+  void zoomToCountry(
+      CountryCode country, MapController controller, DataStore store) async {
+    var province = store.provinces
+        .where((e) => e.countrycode != null)
+        .firstWhere((element) => element.countrycode.iso2 == country.code,
+            orElse: () => null);
+    if (province != null) {
+      controller.move(LatLng(province.location.lat, province.location.lng), 5);
     }
     // } else {
     //   await store.changeCountry(country);
@@ -140,19 +143,14 @@ class HomePage extends StatelessWidget {
   Marker showPlaceMarker(Province province) {
     return Marker(
       point: LatLng(province.location.lat, province.location.lng),
-      builder: (context) => BubbleMarker(
-        bubbleColor: Colors.white,
-        key: UniqueKey(),
-        bubbleContentWidgetBuilder: (context) => Text('Province'),
-        widgetBuilder: (context) => InkWell(
-          child: Icon(
-            Icons.details,
-            color: Colors.white,
-          ),
-          onTap: () {
-            showCountryGraph(province, context);
-          },
+      builder: (context) => InkWell(
+        child: Icon(
+          Icons.details,
+          color: Colors.white,
         ),
+        onTap: () {
+          showCountryGraph(province, context);
+        },
       ),
       height: 150,
       width: 100,
