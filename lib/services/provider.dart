@@ -52,7 +52,7 @@ class DataStore with ChangeNotifier {
 }
 
 class CountryStore with ChangeNotifier {
-  static Logger logger = Logger('DataStore');
+  static Logger logger = Logger('CountryStore');
 
   final Province province;
   final _api = NetCalls();
