@@ -1,18 +1,19 @@
 import 'dart:convert';
-
+import 'package:logging/logging.dart';
 import 'package:corona/models/models.dart';
 import 'package:dio/dio.dart';
 
 class NetCalls {
 
   Dio connector;
+  Logger logger = Logger('NetCalls');
 
   NetCalls(){
     connector = Dio();
   }
 
   Future<List<Province>> getCountryCases(String iso2) async {
-
+    logger.info('getCountryCases: $iso2');
     var response = await connector.get('https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest?iso2=$iso2');
     if(response.statusCode == 200) {
       var list = jsonDecode(response.data) as List;
@@ -23,6 +24,7 @@ class NetCalls {
   }
 
   Future<List<Province>> getWorldCases() async {
+    logger.info('getWorldCases');
     var response = await connector.get('https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest');
     if(response.statusCode == 200) {
       var list = jsonDecode(response.data) as List;
@@ -33,6 +35,8 @@ class NetCalls {
   }
 
     Future<List<TimeSeries>> getCountryTimeSeries(String iso2) async {
+      logger.info('getCountryTimeSeries: $iso2');
+      
     var response = await connector.get('https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/timeseries?iso2=$iso2');
     if(response.statusCode == 200) {
       var resp = jsonDecode(response.data) as List;

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "727612398590",
+    "firebase_url": "https://corona-stas.firebaseio.com",
+    "project_id": "corona-stas",
+    "storage_bucket": "corona-stas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727612398590:android:4121d7128301c2f24cfeaf",
+        "android_client_info": {
+          "package_name": "com.example.corona"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "727612398590-2388r7nuj8n5ehoq1sc6gvvk4m8ugq4r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.corona",
+            "certificate_hash": "695882b384056c12dd8aa270c0929baccb424a4f"
+          }
+        },
+        {
+          "client_id": "727612398590-18nt9lb890sp5o1ekbn5mhgc3e8eg4jg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAUqbVQUvGQP9hSrZ7kQz0MHMlidXpF7o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "727612398590-18nt9lb890sp5o1ekbn5mhgc3e8eg4jg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

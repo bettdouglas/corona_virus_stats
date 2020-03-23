@@ -1,5 +1,6 @@
 import 'package:corona/models/models.dart';
 import 'package:corona/services/api.dart';
+import 'package:corona/services/firebase-analytics.dart';
 import 'package:country_code_picker/country_code.dart' as cc;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -10,13 +11,14 @@ class DataStore with ChangeNotifier {
   static cc.CountryCode countryCode = cc.CountryCode.fromCode('KE');
   final _api = NetCalls();
 
+  AnalyticsObserver observer = AnalyticsObserver(); 
+
   CountryStats countryStats;
   List<Province> provinces;
   bool isFetching = false;
   bool isCountrySelected = false;
 
   DataStore() {
-    // countryCode = ;
     fetchLatest();
   }
 
@@ -66,7 +68,6 @@ class CountryStore with ChangeNotifier {
 
   Future get() async {
     series = await _api.getCountryTimeSeries(province.countrycode.iso2);
-
     isUpdating = false;
     logger.info(series);
     notifyListeners();
