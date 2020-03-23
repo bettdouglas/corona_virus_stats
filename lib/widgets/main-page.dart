@@ -74,20 +74,13 @@ class HomePage extends StatelessWidget {
                   layers: [
                     TileLayerOptions(
                       urlTemplate:
-                          "https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/512/{z}/{x}/{y}?access_token={accessToken}",
+                          "https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/256/{z}/{x}/{y}?access_token={accessToken}",
                       additionalOptions: {
                         'accessToken':
                             'pk.eyJ1IjoiYmV0dGRvdWdpZSIsImEiOiJjaml4MzlieGcyM25yM3JvM3JjMWs0bzB3In0.o339es_Y4jOFIjIH_n38Lg',
                       },
                       tileProvider: CachedNetworkTileProvider()
                     ),
-                    // MarkerLayerOptions(
-                    //   markers: dataStore.isFetching
-                    //       ? []
-                    //       : dataStore.provinces
-                    //           .map((e) => showPlaceMarker(e))
-                    //           .toList(),
-                    // ),
                     MarkerClusterLayerOptions(
                       maxClusterRadius: 60,
                       size: Size(40, 40),
