@@ -30,6 +30,7 @@ abstract class Province implements Built<Province, ProvinceBuilder> {
   @nullable
   @BuiltValueField(wireName: 'deaths')
   int get deaths;
+  @nullable
   @BuiltValueField(wireName: 'recovered')
   int get recovered;
   String toJson() {

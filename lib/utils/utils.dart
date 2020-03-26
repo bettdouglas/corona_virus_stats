@@ -13,7 +13,6 @@ class Utils {
     Logger logger = Logger.root;
     logger.onRecord.listen((event) {
     FirebaseAnalytics().logEvent(name: event.level.name,parameters: {
-      '' : '',
       'Logger' : event.loggerName,
       'Message': event.message,
       'Time': event.time.toIso8601String(),

@@ -30,9 +30,6 @@ class _$ProvinceSerializer implements StructuredSerializer<Province> {
       'location',
       serializers.serialize(object.location,
           specifiedType: const FullType(Location)),
-      'recovered',
-      serializers.serialize(object.recovered,
-          specifiedType: const FullType(int)),
     ];
     if (object.countrycode != null) {
       result
@@ -50,6 +47,12 @@ class _$ProvinceSerializer implements StructuredSerializer<Province> {
       result
         ..add('deaths')
         ..add(serializers.serialize(object.deaths,
+            specifiedType: const FullType(int)));
+    }
+    if (object.recovered != null) {
+      result
+        ..add('recovered')
+        ..add(serializers.serialize(object.recovered,
             specifiedType: const FullType(int)));
     }
     return result;
@@ -147,9 +150,6 @@ class _$Province extends Province {
     }
     if (location == null) {
       throw new BuiltValueNullFieldError('Province', 'location');
-    }
-    if (recovered == null) {
-      throw new BuiltValueNullFieldError('Province', 'recovered');
     }
   }
 

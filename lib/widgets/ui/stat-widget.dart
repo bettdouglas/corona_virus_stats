@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class StatContainer extends StatelessWidget {
-
   final IconData iconData;
-  final String statTitle,stat;
+  final String statTitle, stat;
   final Color statColor;
 
-  const StatContainer({Key key, this.iconData, this.statTitle, this.stat,this.statColor}) : super(key: key);
+  const StatContainer(
+      {Key key, this.iconData, this.statTitle, this.stat, this.statColor})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +20,19 @@ class StatContainer extends StatelessWidget {
         border: Border.all(
           color: Colors.transparent,
         ),
-        borderRadius: BorderRadius.circular(12.0)
+        borderRadius: BorderRadius.circular(12.0),
       ),
       child: ListTile(
-        leading: Icon(iconData,size: 40,),
-        title: Text(statTitle,style: titleTheme,),
+        leading: Icon(
+          iconData,
+          size: 40,
+        ),
+        title: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(statTitle, style: titleTheme),
+        ),
         subtitle: Text(stat),
-      )
+      ),
     );
   }
 }
